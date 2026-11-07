@@ -1,0 +1,25 @@
+uid,source,human_is_relevant,ai_is_relevant,match_is_relevant,human_lifecycle_stage,ai_lifecycle_stage,match_lifecycle_stage,human_action,ai_action,match_action,human_trigger,ai_trigger,match_trigger,ai_invented_segment,ai_quote
+tr_00827,tradingqna,yes,yes,True,pre_start,pre_start,True,unknown,checking,False,setup_friction,none,False,False,do we have to add money to the Zerodha cash account once a alert is generated or the amount is directly deducted
+yo_01800,youtube,yes,yes,True,unknown,pre_start,False,unknown,started,False,none,none,True,True,The 5th date auto-debit tip really helps salaried beginners stick to it.
+pl_00421,play_store,yes,yes,True,unknown,unknown,True,lapsed_involuntary,lapsed_involuntary,True,payment_failure,payment_failure,True,False,multiple time deduction of SIP amount which leads to check bounce and penalty
+pl_00525,play_store,yes,yes,True,unknown,unknown,True,stopped,stopped,True,app_trust_issue,app_trust_issue,True,False,money will be taken out automatically from your bank account even though the app shows that SIP is cancelled
+tr_00891,tradingqna,yes,yes,True,unknown,unknown,True,unknown,continued,False,payment_failure,payment_failure,True,False,"if there are no funds on the SIP date, there is a penalty"
+yo_01987,youtube,yes,yes,True,unknown,unknown,True,considering_stop,restarted,False,none,none,True,True,Can I continue my same sip after stopping it for some period??
+tr_01080,tradingqna,no,yes,False,unknown,unknown,,unknown,checking,,unknown,none,,False,claiming great returns from SIP
+pl_00717,play_store,yes,yes,True,m0_1,m0_1,True,started,started,True,none,none,True,False,I have did my first SIP for a good risk free return that is around 19%
+pl_00399,play_store,yes,yes,True,unknown,unknown,True,redeemed,redeemed,True,app_trust_issue,app_trust_issue,True,False,redemption of SIP amount taking super long
+pl_00133,play_store,yes,yes,True,unknown,unknown,True,checking,continued,False,app_trust_issue,app_trust_issue,True,False,My September investment in one of my mutual funds has disappeared
+pl_00292,play_store,yes,yes,True,m12_plus,m12_plus,True,lapsed_involuntary,continued,False,payment_failure,app_trust_issue,False,False,money is debating from my account for SIP but I didn't receive any SIP NAV
+ap_00022,app_store,no,yes,False,unknown,unknown,,unknown,started,,unknown,none,,False,Best for MF for SIP or lump sum
+pl_00180,play_store,no,yes,False,unknown,pre_start,,unknown,started,,unknown,none,,True,Easy to use app for beginners to start trading and investment on mutual fund and to do SIP
+yo_02094,youtube,no,yes,False,unknown,unknown,,unknown,continued,,unknown,none,,True,angel one mei running sip pe lumpsum add karke video dalo plz
+yo_01757,youtube,yes,yes,True,pre_start,pre_start,True,unknown,started,False,none,none,True,False,aaj aapka video dekhne ke baad sab aagaya thank uh for advising
+yo_02095,youtube,yes,yes,True,m0_1,m0_1,True,stopped,stopped,True,none,none,True,True,i cancelled sip then how many days. This money withdrawal my account
+yo_01842,youtube,yes,yes,True,pre_start,pre_start,True,unknown,started,False,none,none,True,True,I'm a complete beginner. If I can invest only ₹500–₹1000/month from my pocket money
+tr_01336,tradingqna,yes,yes,True,unknown,m12_plus,False,continued,continued,True,none,negative_returns,False,False,sitting on cash waiting for correction but also continuing long term SIP’s
+tr_01393,tradingqna,yes,yes,True,unknown,unknown,True,paused,restarted,False,other,none,False,False,I have paused one of SIP but accidently i have deleted the SIP. What exactly delete means?
+pl_00070,play_store,no,yes,False,unknown,unknown,,unknown,started,,unknown,none,,False,YAH AAPKE MEHNAT KI KAMAI KO
+pl_00072,play_store,yes,yes,True,m12_plus,m12_plus,True,redeemed,redeemed,True,app_trust_issue,app_trust_issue,True,False,then i withdrawal all
+pl_00148,play_store,yes,yes,True,unknown,pre_start,False,lapsed_involuntary,setup_failed,False,payment_failure,payment_failure,True,False,money debited but but didn't allotted and money is also not refund
+pl_00373,play_store,yes,yes,True,unknown,unknown,True,lapsed_involuntary,setup_failed,False,payment_failure,payment_failure,True,False,failed payments(despite having autopay mandate approved) and Tickets for refunds
+ap_00004,app_store,no,no,True,unknown,unknown,,unknown,unknown,,unknown,none,,False,

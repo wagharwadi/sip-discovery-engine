@@ -1,0 +1,181 @@
+{
+  "proposed_by": "gemini:gemini-3.5-flash",
+  "based_on_needs": 450,
+  "themes": [
+    {
+      "id": "mandate_and_onboarding_friction",
+      "name": "Mandate Setup and Onboarding Friction",
+      "definition": "Difficulties and failures when attempting to set up bank mandates, complete KYC verification, authenticate OTPs, or start a new SIP mandate.",
+      "node": "A",
+      "addressability": 3,
+      "addressability_reason": "Groww can directly redesign onboarding workflows, offer debit card/UPI mandate alternatives, and provide real-time mandate status tracking.",
+      "example_needs": [
+        "[setup_friction|setup_failed] Smooth upload process for the SIP mandate form",
+        "[setup_friction|started] Easier SIP mandate setup via debit card rather than internet banking"
+      ]
+    },
+    {
+      "id": "involuntary_payment_and_refund_issues",
+      "name": "Involuntary Payment Failures and Refund Delays",
+      "definition": "Issues where automated SIP debits fail, bounce charges occur unexpectedly, money is deducted without unit allotment, or refunds are delayed.",
+      "node": "B",
+      "addressability": 3,
+      "addressability_reason": "Groww can optimize payment gateway retry logic, send timely pre-debit notifications, align debits with salary dates, and automate instant refund processing.",
+      "example_needs": [
+        "[payment_failure|lapsed_involuntary] Prompt refund for failed SIP deductions",
+        "[payment_failure|unknown] Accurate debit dates matching the stated SIP schedule without unexpected bounce charges."
+      ]
+    },
+    {
+      "id": "sip_flexibility_and_modification",
+      "name": "SIP Flexibility and Modification Options",
+      "definition": "The need to pause, modify investment amounts, change debit dates, or step-up active SIPs without cancelling the existing mandate.",
+      "node": "C",
+      "addressability": 3,
+      "addressability_reason": "Groww can build self-serve product features allowing users to pause, edit, skip, or step-up active SIPs seamlessly in the app.",
+      "example_needs": [
+        "[income_change|paused] Pause feature for all mutual funds instead of cancel only",
+        "[setup_friction|checking] Modify active AMC SIP amount without deleting it."
+      ]
+    },
+    {
+      "id": "negative_returns_and_market_disappointment",
+      "name": "Negative Returns and Market Downturn Anxiety",
+      "definition": "Investor disappointment and loss of confidence triggered by negative returns, flat market performance, or falling portfolio values.",
+      "node": "C",
+      "addressability": 2,
+      "addressability_reason": "Groww can't change markets, but it can explain in plain language what a dip means for a SIP and set expectations at the start, without advice, return promises or fear.",
+      "example_needs": [
+        "[negative_returns|considering_stop] Positive returns after 3 years of investing",
+        "[negative_returns|checking] Assurance on getting principal or returns back if market drops"
+      ],
+      "review_changes": [
+        "human review 7 Nov: addressability 1->2: explaining what a dip means for a SIP is education, not advice (was {'addressability': 1, 'addressability_reason': 'Groww cannot control market movements or promise principal protection without making inappropriate return guarantees or offering financial advice.'})"
+      ]
+    },
+    {
+      "id": "fund_switching_and_migration",
+      "name": "Fund Switching and Platform Migration",
+      "definition": "Friction experienced when transferring SIPs from regular to direct plans, migrating holdings from external platforms, or setting up systematic transfer plans (STP).",
+      "node": "D",
+      "addressability": 3,
+      "addressability_reason": "Groww can build automated CAS import engines, clear regular-to-direct conversion utilities, and seamless platform switching flows.",
+      "example_needs": [
+        "[fund_switch|restarted] Seamless transfer from regular to direct mutual fund SIPs",
+        "[fund_switch|restarted] Guidance on how to transfer SIP from Groww to AngelOne."
+      ]
+    },
+    {
+      "id": "returns_comprehension",
+      "name": "Understanding Returns Numbers",
+      "definition": "Does not understand the returns shown (XIRR, absolute return %, NAV, current vs invested value) or how they are calculated.",
+      "node": "C",
+      "addressability": 3,
+      "addressability_reason": "Groww can explain each number in plain language on the screen where it appears, without advice or return promises.",
+      "example_needs": [
+        "Clear explanation of how XIRR is calculated",
+        "Total portfolio returns in percentage format"
+      ],
+      "review_changes": [
+        "human review 7 Nov: split from portfolio_tracking_and_reporting_discrepancies, which mixed user comprehension (36 items) with app data errors (53 items)"
+      ]
+    },
+    {
+      "id": "portfolio_data_accuracy",
+      "name": "Wrong or Delayed Portfolio Data",
+      "definition": "The app shows wrong or late data: NAV not updated, units/balance mismatch, missing or delayed folio/holding updates.",
+      "node": "C",
+      "addressability": 3,
+      "addressability_reason": "Groww can fix data sync and show clear 'last updated' status.",
+      "example_needs": [
+        "Accurate balance and return tracking without discrepancies",
+        "Timely NAV updates"
+      ],
+      "review_changes": [
+        "human review 7 Nov: split from portfolio_tracking_and_reporting_discrepancies; node C because data errors are trust issues (taxonomy C)"
+      ]
+    },
+    {
+      "id": "comprehension_of_mechanics_and_charges",
+      "name": "Comprehension of SIP Mechanics and Platform Charges",
+      "definition": "Lack of clarity regarding how SIP auto-debits work, direct vs regular plan differences, exit loads, expense ratios, tax rules, and platform fee structures.",
+      "node": "C",
+      "addressability": 3,
+      "addressability_reason": "Groww can provide clear contextual tooltips, fee breakdowns, and objective educational content within the transaction flow.",
+      "example_needs": [
+        "[confusing_numbers|checking] Clear understanding of platform charges vs regular fund charges",
+        "[confusing_numbers|started] Clarity on whether SIP instalment amounts can be changed or must remain fixed."
+      ],
+      "review_changes": [
+        "human review 7 Nov: node E->C: confusion is a voluntary-lapse driver (decomposition C) (was {'node': 'E'})"
+      ]
+    },
+    {
+      "id": "redemption_and_liquidity_friction",
+      "name": "Redemption and Liquidity Payout Delays",
+      "definition": "Friction, slow processing times, or lack of clarity around redeeming mutual fund units and transferring funds to the user's bank account during cash needs.",
+      "node": "C",
+      "addressability": 1,
+      "addressability_reason": "Payout speed should be fixed for users, but it is not a continuation lever; stopping/redeeming must stay as easy as today.",
+      "example_needs": [
+        "[liquidity_need|redeemed] Faster redemption payout within two days instead of five",
+        "[app_trust_issue|redeemed] Timely credit of redeemed mutual fund money to bank account."
+      ],
+      "review_changes": [
+        "human review 7 Nov: node E->C, addressability 3->1: redeem-and-stop is branch C, but faster payouts don't improve continuation and making exits harder would be a dark pattern (was {'node': 'E', 'addressability': 3, 'addressability_reason': 'Groww can display live tracking for redemption settlement timelines, clarify payout schedules, and streamline withdrawal processing.'})"
+      ]
+    },
+    {
+      "id": "investment_guidance_and_discovery",
+      "name": "Investment Discovery and Guidance Requests",
+      "definition": "Requests for curated fund recommendations, top SIP picks, portfolio reviews, and beginner guidance on selecting the best mutual funds.",
+      "node": "A",
+      "addressability": 1,
+      "addressability_reason": "Providing specific investment recommendations or fund picks crosses into investment advisory, which requires regulated advisory structures.",
+      "example_needs": [
+        "[none|started] Fund recommendations for good SIPs to invest in.",
+        "[none|checking] Needs recommendations on which SIP to choose."
+      ]
+    },
+    {
+      "id": "advanced_features_and_order_types",
+      "name": "Advanced Features and Custom Order Types",
+      "definition": "Demands for sophisticated platform features including SWP, Stock SIPs, Gold SIPs, goal tagging, fund comparison tools, and custom watchlists.",
+      "node": "E",
+      "addressability": 3,
+      "addressability_reason": "Groww can prioritize building product capabilities like Systematic Withdrawal Plans (SWP), Stock SIPs, and goal tagging into the core platform.",
+      "example_needs": [
+        "[none|continued] SWP/STP feature availability",
+        "[none|continued] Ability to add custom alias names or goal tags to SIPs"
+      ]
+    },
+    {
+      "id": "customer_support_and_platform_reliability",
+      "name": "Customer Support Responsiveness and Platform Uptime",
+      "definition": "Frustration stemming from unhelpful automated support, lack of direct phone helplines, system glitches, and slow issue resolution.",
+      "node": "C",
+      "addressability": 3,
+      "addressability_reason": "Groww can expand customer support channels, add live callback capabilities, and improve app stability and backend infrastructure.",
+      "example_needs": [
+        "[app_trust_issue|stopped] Responsive customer support to resolve transaction delay issues quickly",
+        "[app_trust_issue|checking] Working dashboard and responsive customer care"
+      ],
+      "review_changes": [
+        "human review 7 Nov: node E->C: app/trust issues map to C in the taxonomy (was {'node': 'E'})"
+      ]
+    },
+    {
+      "id": "other",
+      "name": "Other Unmet Needs",
+      "definition": "Miscellaneous user requests and edge cases that do not map cleanly to the core SIP setup, execution, or tracking journey.",
+      "node": "X",
+      "addressability": 3,
+      "addressability_reason": "Addressability depends on the specific edge case, regulatory policy, or custom feature requested.",
+      "example_needs": [
+        "[other|considering_stop] RBI overseas investment limit enhancement to accept fresh SIPs.",
+        "[other|paused] NRI status account conversion"
+      ]
+    }
+  ],
+  "reviewed": "human review 7 Nov"
+}

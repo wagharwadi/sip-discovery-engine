@@ -1,0 +1,17 @@
+# secrets
+.env
+.streamlit/secrets.toml
+
+# python
+.venv/
+__pycache__/
+*.pyc
+
+# raw data may contain usernames; keep it local
+data/raw/
+
+# run logs / backups (noise, may hold error text)
+data/logs/
+
+# local tool config
+.claude/
