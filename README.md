@@ -2,7 +2,7 @@
 
 An AI pipeline that analyses public conversations about SIPs in India to find why first-time investors' SIPs stop within 12 months. It ranks opportunities against the metric: *% of first-time MF investors with an active SIP 12 months after their first one.*
 
-**Live app:** https://sip-discovery-engine.onrender.com (free hosting: the first visit after a quiet spell takes ~1 min to wake up) · Student research project · not investment advice.
+**Live:** Discovery Engine https://rhythm-sip.onrender.com/engine/ · MVP https://rhythm-sip.onrender.com (one free server runs both; the first visit after a quiet spell takes ~1 min to wake up) · Student research project · not investment advice.
 
 ## Pipeline
 | Step | Script | Output |
