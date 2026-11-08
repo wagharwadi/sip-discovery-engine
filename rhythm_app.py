@@ -1,12 +1,14 @@
 """Rhythm SIP: MVP prototype (Step 9). A SIP that moves with your money.
 
-Run locally:  python rhythm_app.py            then open http://localhost:8503
-Deploy:       the same command (it reads $PORT).
+Run locally:  python rhythm_app.py            then open http://localhost:8503  (Discovery Engine: /engine/)
+Deploy:       the same command (it reads $PORT). It also runs the Discovery Engine at /engine/ (engine_proxy.py),
+              so both apps live on one free server and both links work at the same time. ENGINE=0 turns that off.
 Front end:    web/  (one guided flow: each step moves on by itself once its checks pass)
 Design rule:  the AI only reads (pay description, check-in replies); rules decide and verify; the user confirms.
 Free-text questions go through the tested safety engine (mvp_core). All data is simulated: no real money, no bank data.
 """
 import calendar
+import contextlib
 import datetime as dt
 import json
 import os
@@ -26,6 +28,7 @@ from starlette.responses import FileResponse, JSONResponse, PlainTextResponse  #
 from starlette.routing import Mount, Route  # noqa: E402
 from starlette.staticfiles import StaticFiles  # noqa: E402
 
+import engine_proxy as E  # noqa: E402
 import mvp_core as M  # noqa: E402
 import rhythm_core as R  # noqa: E402
 from rhythm_core import fmt, ordinal  # noqa: E402
@@ -679,13 +682,24 @@ async def health(request):
     return PlainTextResponse("ok")
 
 
+ENGINE_ON = os.environ.get("ENGINE", "1") != "0"
+
+
+@contextlib.asynccontextmanager
+async def lifespan(app):
+    if ENGINE_ON:
+        E.start(ROOT)                 # Discovery Engine (Streamlit) as a child process, served at /engine/
+    yield
+    E.stop()
+
+
 app = Starlette(routes=[
     Route("/", index), Route("/healthz", health), Route("/api/config", api_config),
     Route("/api/plan", api_plan, methods=["POST"]), Route("/api/reply", api_reply, methods=["POST"]),
     Route("/api/move", api_move, methods=["POST"]), Route("/api/learn", api_learn, methods=["POST"]),
     Route("/api/ask", api_ask, methods=["POST"]),
     Mount("/static", Static(directory=WEB), name="static"),
-], middleware=[Middleware(GZipMiddleware, minimum_size=800)])
+] + (E.ROUTES if ENGINE_ON else []), middleware=[Middleware(GZipMiddleware, minimum_size=800)], lifespan=lifespan)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", "8503"))
