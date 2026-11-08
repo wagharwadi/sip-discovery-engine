@@ -1,0 +1,271 @@
+{
+  "about": "Knowledge base for the MVP: how SIP payments work on Groww, from official Groww help pages, an AMC (Kotak MF) and SEBI/AMFI. Educational only. Checked 7 Nov 2026; rules can change, so answers always point to the source.",
+  "checked": "2026-11-07",
+  "entries": [
+    {
+      "id": "autopay_basics",
+      "title": "How AutoPay (mandate) pays your SIP",
+      "tags": [
+        "setup_friction",
+        "started",
+        "autopay",
+        "mandate",
+        "nach",
+        "upi autopay",
+        "first sip"
+      ],
+      "text": "AutoPay (a mandate) lets your SIP be paid automatically every month: you give your bank a one-time approval, and the exact SIP amount is then debited for each instalment. Bank approval of AutoPay can take 2-7 working days, so set it up before your first SIP date.",
+      "source": "Groww Help: How do monthly installments get paid automatically?",
+      "url": "https://groww.in/help/mutual-funds/mf-sip/how-do-monthly-installments-get-paid-automatically"
+    },
+    {
+      "id": "mandate_limits",
+      "title": "AutoPay mandate limits",
+      "tags": [
+        "payment_failure",
+        "setup_friction",
+        "mandate limit",
+        "upi autopay",
+        "enach",
+        "limit"
+      ],
+      "text": "A mandate is your consent for Groww to debit SIP amounts from your bank account. On Groww the maximum mandate limit is Rs 1 lakh for eNACH mandates and Rs 15,000 for UPI AutoPay. Make sure the total of SIPs linked to a mandate fits within its limit.",
+      "source": "Groww Help: What does AutoPay mandate limit mean?",
+      "url": "https://groww.in/help/my-account/ma-bank-accounts/what-does-autopay-mandate-limit-mean--49"
+    },
+    {
+      "id": "debit_timing",
+      "title": "When the money actually leaves your account",
+      "tags": [
+        "payment_failure",
+        "income_change",
+        "debit date",
+        "sip date",
+        "salary",
+        "balance",
+        "timing",
+        "one day before"
+      ],
+      "text": "On Groww the SIP amount is deducted one bank working day before your SIP date, so that the order can be placed on the SIP date itself. Groww advises keeping enough balance in your account at least 2 working days before the SIP instalment date.",
+      "source": "Groww Help: SIP installment was deducted but the order is not reflected; My AutoPay is approved, even then my SIP failed",
+      "url": "https://groww.in/help/mutual-funds/mf-sip/sip-installment-was-deducted-but-the-order-is-not-reflected-on-the-dashboard"
+    },
+    {
+      "id": "why_failed",
+      "title": "Common reasons a SIP instalment fails",
+      "tags": [
+        "payment_failure",
+        "setup_failed",
+        "lapsed_involuntary",
+        "failed",
+        "rejected",
+        "bounce",
+        "kyc",
+        "insufficient balance"
+      ],
+      "text": "Common reasons: (1) not enough balance in the bank account; (2) the SIP is not linked to an approved AutoPay, or the mandate is missing, expired or rejected; (3) KYC or investor details (name, date of birth, PAN, mobile) don't match records, or KYC is incomplete; (4) scheme rules, e.g. the scheme is closed for new SIPs or the amount is below its minimum. Check your KYC/PAN status, your payment status and that AutoPay is set up; if it still fails, contact Groww support.",
+      "source": "Groww Help: Why did my SIP installment fail?",
+      "url": "https://groww.in/help/mutual-funds/order/why-did-my-sip-installment-fail--36"
+    },
+    {
+      "id": "autopay_approved_but_failed",
+      "title": "AutoPay is approved but the SIP still failed",
+      "tags": [
+        "payment_failure",
+        "lapsed_involuntary",
+        "autopay approved",
+        "failed",
+        "rejected autopay"
+      ],
+      "text": "Two usual causes: the balance was not enough (Groww advises keeping it at least 2 working days before the SIP date), or the SIP is still linked to an older AutoPay that was rejected. In the second case, open My SIPs and switch the SIP to the AutoPay that is approved.",
+      "source": "Groww Help: My AutoPay is approved, even then my SIP failed",
+      "url": "https://groww.in/help/mutual-funds/searchable/my-autopay-is-approved-even-then-my-sip-failed"
+    },
+    {
+      "id": "after_one_failure",
+      "title": "What happens after one failed instalment",
+      "tags": [
+        "payment_failure",
+        "lapsed_involuntary",
+        "what happens",
+        "next month",
+        "continue"
+      ],
+      "text": "Only that month's instalment is not invested. Units you already hold are not affected. The SIP stays active, and the next instalment can go through normally once the cause (e.g. balance or mandate) is fixed.",
+      "source": "Kotak Mutual Fund: What happens if a SIP installment fails?",
+      "url": "https://www.kotakmf.com/Information/blogs/why-did-sip-installment-failed"
+    },
+    {
+      "id": "auto_cancel_rule",
+      "title": "When a SIP is cancelled automatically",
+      "tags": [
+        "payment_failure",
+        "lapsed_involuntary",
+        "stopped",
+        "consecutive",
+        "auto cancel",
+        "three",
+        "cancelled"
+      ],
+      "text": "Under industry rules in force since April 2024, a monthly (or daily/weekly/fortnightly) SIP is cancelled automatically after 3 consecutive failed debits; for quarterly or longer SIPs the limit is usually 2. One successful debit in between resets the count. On Groww, skipping 3 instalments in a row also cancels the SIP.",
+      "source": "Kotak Mutual Fund: What happens if a SIP installment fails?; Groww Help: maximum period to skip SIP installments",
+      "url": "https://www.kotakmf.com/Information/blogs/why-did-sip-installment-failed"
+    },
+    {
+      "id": "failure_charges",
+      "title": "Charges when a SIP debit fails",
+      "tags": [
+        "payment_failure",
+        "bounce",
+        "charges",
+        "penalty",
+        "ecs",
+        "fee",
+        "cibil"
+      ],
+      "text": "Groww does not charge anything for a failed SIP order, and AMCs don't levy a penalty for a one-time SIP failure. Your bank may charge an ECS / auto-debit rejection fee; the amount varies from bank to bank, so check with your bank.",
+      "source": "Groww Help: What are ECS charges?; Kotak Mutual Fund",
+      "url": "https://groww.in/help/mutual-funds/mf-autopay/what-are-ecs-charges--96"
+    },
+    {
+      "id": "pay_missed",
+      "title": "Paying for a missed instalment",
+      "tags": [
+        "payment_failure",
+        "lapsed_involuntary",
+        "pay now",
+        "missed",
+        "retry",
+        "pay manually"
+      ],
+      "text": "If an instalment failed because of low balance, a 'Pay Now' option appears on your Groww dashboard for 2 working days. After the date shown on a pending SIP, that instalment is treated as failed. You can also make a one-time investment in the same fund instead (this isn't possible in some funds).",
+      "source": "Groww Help: How do I pay for a missed installment?; What happens if I pay after the date shown on pending SIP?",
+      "url": "https://groww.in/help/mutual-funds/mf-sip/how-do-i-pay-for-a-missed-installment-3"
+    },
+    {
+      "id": "debited_not_showing",
+      "title": "Money was debited but the order or units don't show",
+      "tags": [
+        "payment_failure",
+        "app_trust_issue",
+        "debited",
+        "units not allotted",
+        "not reflected",
+        "missing",
+        "nav"
+      ],
+      "text": "Because the amount is deducted one bank working day early, the order appears under 'Orders in progress' on the SIP date itself. If more than 2 working days have passed since the deduction and it still doesn't show, contact Groww support.",
+      "source": "Groww Help: SIP installment was deducted but the order is not reflected on the dashboard",
+      "url": "https://groww.in/help/mutual-funds/mf-sip/sip-installment-was-deducted-but-the-order-is-not-reflected-on-the-dashboard"
+    },
+    {
+      "id": "skip_instalment",
+      "title": "Skipping one instalment",
+      "tags": [
+        "paused",
+        "considering_stop",
+        "liquidity_need",
+        "income_change",
+        "skip",
+        "pause",
+        "next month",
+        "short of money"
+      ],
+      "text": "On Groww you can skip an upcoming instalment: My SIPs -> select the SIP -> Edit SIP -> Skip Installment -> check the month and confirm. You can skip one instalment at a time. If the next instalment is due within 2 days, the skip applies to the one after it. Skipping 3 instalments in a row cancels the SIP automatically.",
+      "source": "Groww Help: Can I pause SIP for next month?; What is the maximum period for which I can skip my SIP installments?",
+      "url": "https://groww.in/help/mutual-funds/mf-sip/what-is-the-maximum-period-for-which-i-can-skip-my-sip-installments--63"
+    },
+    {
+      "id": "edit_sip",
+      "title": "Changing the SIP amount or date",
+      "tags": [
+        "reduced",
+        "income_change",
+        "payment_failure",
+        "change date",
+        "edit",
+        "amount",
+        "salary date"
+      ],
+      "text": "You can edit your SIP (for example the amount or date) or skip it at any time from My SIPs -> Edit SIP. If the next instalment is due within 2 working days, the change applies only from the instalment after that. For a SIP created today, an edit request can take up to 2 days to process.",
+      "source": "Groww Help: When can I edit my SIP?; Groww blog: How to edit an SIP on Groww",
+      "url": "https://groww.in/help/mutual-funds/discoverable/when-can-i-edit-my-sip--29"
+    },
+    {
+      "id": "cancel_sip",
+      "title": "Stopping (cancelling) a SIP",
+      "tags": [
+        "stopped",
+        "considering_stop",
+        "cancel",
+        "stop",
+        "band"
+      ],
+      "text": "To stop a SIP: Mutual Funds -> SIPs -> select the SIP -> Cancel SIP -> choose a reason -> confirm. You can't cancel if the next instalment is due within 7 days. Cancelling stops future instalments; your invested amount stays invested until you redeem it. Cancellation can't be undone, but you can start a new SIP in the same fund later.",
+      "source": "Groww Help: How can I cancel an ongoing SIP?",
+      "url": "https://groww.in/help/mutual-funds/mf-sip/how-to-cancel-my-sip"
+    },
+    {
+      "id": "cancelled_but_deducted",
+      "title": "Cancelled the SIP but money was still deducted",
+      "tags": [
+        "stopped",
+        "app_trust_issue",
+        "cancelled",
+        "deducted anyway",
+        "refund"
+      ],
+      "text": "A cancellation can take up to 7 days to process, so a payment close to the due date may already have been processed by the fund house or bank. In that case mutual fund units are still allotted to you and a refund isn't possible; if you don't want them, you can redeem the units after 2 working days.",
+      "source": "Groww Help: I cancelled my SIP, but the amount was still deducted. Why?",
+      "url": "https://groww.in/help/mutual-funds/order/i-have-cancelled-my-sip-the-amount-was-deducted-anyway-2"
+    },
+    {
+      "id": "cancel_vs_redeem",
+      "title": "Stopping a SIP does not return your money",
+      "tags": [
+        "stopped",
+        "redeemed",
+        "liquidity_need",
+        "withdraw",
+        "money back",
+        "redeem",
+        "cancel"
+      ],
+      "text": "Stopping (cancelling) a SIP only stops future instalments; it does not give your money back. Units you already bought stay invested. Getting money back is a separate step called redemption; exit loads and tax may apply when you redeem.",
+      "source": "Groww Help: How can I cancel an ongoing SIP?; Kotak Mutual Fund: How to stop a SIP",
+      "url": "https://groww.in/help/mutual-funds/mf-sip/how-to-cancel-my-sip"
+    },
+    {
+      "id": "returns_not_guaranteed",
+      "title": "SIP returns are not fixed",
+      "tags": [
+        "expectation_gap",
+        "negative_returns",
+        "confusing_numbers",
+        "returns",
+        "12%",
+        "guaranteed",
+        "fixed return",
+        "loss"
+      ],
+      "text": "Mutual fund investments are subject to market risk: the value of a SIP moves with the market, so returns are not fixed or guaranteed, and the return figures shown in SIP calculators are assumptions, not promises. AMFI warns that unrealistic promises and urgency are common signs of fraud.",
+      "source": "AMFI: Mutual Funds Made Simple (investor education booklet)",
+      "url": "https://www.amfiindia.com/uploads/AMFI_Understanding_Mutual_Funds_IAP_Booklet_Final_Website_version_860a5b77aa.pdf"
+    },
+    {
+      "id": "official_help",
+      "title": "Where to get official help",
+      "tags": [
+        "app_trust_issue",
+        "support",
+        "complaint",
+        "advice",
+        "adviser",
+        "help"
+      ],
+      "text": "For your own account: Groww support (Help in the app) and your bank for bank charges. For an unresolved complaint: SEBI SCORES (scores.sebi.gov.in). For personal investment advice: a SEBI-registered investment adviser (list on sebi.gov.in). For investor education: AMFI's Mutual Funds Sahi Hai (mutualfundssahihai.com).",
+      "source": "SEBI: Recognised intermediaries - Investment Advisers; SEBI Investor Support",
+      "url": "https://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=13"
+    }
+  ]
+}

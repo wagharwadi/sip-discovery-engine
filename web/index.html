@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rhythm SIP · prototype</title>
+<meta name="description" content="A SIP that moves with your money. Student prototype: simulated money, not investment advice.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%2300B386'/%3E%3Cpath d='M3 12h3l3-7 4 14 3-7h5' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/app.css?v=1">
+</head>
+<body>
+<header class="nav">
+  <div class="brand"><span class="mark" data-icon="pulse"></span><span class="name">Rhythm SIP</span></div>
+  <nav class="steps" id="steps" aria-label="Steps"></nav>
+  <div class="tag">Prototype · simulated money · not investment advice</div>
+</header>
+
+<main id="deck">
+  <!-- 1 · intro -->
+  <section class="slide" id="s-intro" aria-label="Start">
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="inner"><div class="wrap center">
+      <div class="eyebrow rv" style="--i:0">Rhythm SIP · for first-time investors</div>
+      <h1 class="display rv" style="--i:1">A SIP that moves<br>with your money</h1>
+      <p class="lead rv" style="--i:2">In our interviews, every failed SIP payment had one cause: the money came after the SIP date. Rhythm SIP sets the date from your payday, checks in before each payment, and bends when a month runs late.</p>
+      <div class="row rv" style="--i:3">
+        <button class="pill primary lg" data-go="1">Set my rhythm <span data-icon="arrow"></span></button>
+        <button class="pill soft lg" data-go="7">How it's checked</button>
+      </div>
+      <div class="hv rv" style="--i:4" aria-hidden="true">
+        <div class="hv-top"><span class="hv-month" id="hvMonth">Jun</span><span class="hv-status" id="hvStatus">Fixed date, 5th</span></div>
+        <div class="hv-track" id="hvTrack">
+          <div class="hv-line"></div>
+          <div class="hv-fixed" id="hvFixed"></div>
+          <div class="hv-sip" id="hvSip"><b id="hvSipLbl">Rhythm SIP</b><i></i></div>
+          <div class="hv-coin" id="hvCoin"><span id="hvCoinLbl">Money in</span></div>
+        </div>
+        <div class="hv-foot"><span><i class="k-dot"></i>your money arrives</span><span><i class="k-sip"></i>Rhythm SIP follows it</span><span><i class="k-fix"></i>a fixed date stays put</span></div>
+      </div>
+      <div class="ticker rv" style="--i:5" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+    </div></div>
+  </section>
+
+  <!-- 2 · setup -->
+  <section class="slide" id="s-setup" aria-label="Your words">
+    <div class="inner"><div class="wrap narrow">
+      <div class="eyebrow rv" style="--i:0">Step 1 · In your words</div>
+      <h2 class="title rv" style="--i:1">When does your money usually come in?</h2>
+      <p class="lead rv" style="--i:2">Say it your way, in English or Hinglish. The AI only reads it. Fixed rules pick the date and test it on real calendar months.</p>
+      <form class="ask rv" style="--i:3" id="setupForm" autocomplete="off">
+        <label class="sr" for="setupInput">When does your money usually come in?</label>
+        <input id="setupInput" maxlength="300" placeholder="">
+        <button class="go" type="submit" aria-label="Read my rhythm"><span data-icon="arrow" data-size="20"></span></button>
+      </form>
+      <div class="collapse" id="setupExtras">
+        <div class="chips rv" style="--i:4" id="exampleChips"></div>
+        <div class="current rv" style="--i:5"><label for="currentDay">The SIP date you'd pick today</label><select id="currentDay"></select></div>
+      </div>
+      <div id="verify" hidden>
+        <div style="margin-top:22px"><span class="quote" id="vQuote"></span></div>
+        <ol class="vlist" id="vlist"></ol>
+        <div id="vNotes"></div>
+        <div id="fallback" class="fallback" hidden>
+          <div class="fb-h">Pick the closest pattern</div>
+          <div class="seg" id="fbSeg" role="group" aria-label="Pay pattern">
+            <button type="button" data-p="fixed_date" aria-pressed="false">Same day every month</button>
+            <button type="button" data-p="date_window" aria-pressed="false">Within a few days</button>
+            <button type="button" data-p="last_working_day" aria-pressed="false">Last working day</button>
+            <button type="button" data-p="weekly" aria-pressed="false">Every week</button>
+            <button type="button" data-p="irregular" aria-pressed="false">It varies</button>
+          </div>
+          <div class="fb-days" id="fbDays"></div>
+          <button class="pill primary" id="fbGo" type="button" disabled>Use this <span data-icon="arrow"></span></button>
+        </div>
+        <div class="vfoot" id="vFoot"></div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 3 · rhythm -->
+  <section class="slide" id="s-rhythm" aria-label="Your rhythm">
+    <div class="inner"><div class="wrap split">
+      <div>
+        <div class="eyebrow rv" style="--i:0">Step 2 · Your rhythm</div>
+        <h2 class="title mid rv" style="--i:1" id="rhTitle"></h2>
+        <p class="lead rv" style="--i:2" id="rhSub"></p>
+        <ol class="legend rv" style="--i:3" id="legend"></ol>
+      </div>
+      <div>
+        <div class="cal rv" style="--i:2" id="cal"></div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 4 · replay (dark) -->
+  <section class="slide" id="s-replay" aria-label="Six months">
+    <div class="inner"><div class="wrap">
+      <div class="eyebrow rv" style="--i:0">Step 3 · Six months, replayed</div>
+      <h2 class="title rv" style="--i:1;max-width:30ch">Same money, same six months, two SIPs</h2>
+      <p class="lead rv" style="--i:2"><span id="rpStory"></span> Replayed on real calendar months, weekends included. The money is taken one working day before the SIP date.</p>
+      <div class="tally rv" style="--i:3">
+        <div class="tl"><div class="tl-l" id="tfL"></div><div class="tl-n"><span id="tfN">0</span><small>/ 6 invested</small></div>
+          <div class="tl-s"><b id="tfB">0</b> bounced · <b>₹<span id="tfF">0</span></b> in bank charges</div></div>
+        <div class="tl rh"><div class="tl-l" id="trL"></div><div class="tl-n"><span id="trN">0</span><small>/ 6 invested</small></div>
+          <div class="tl-s"><b>0</b> bounced · <b id="trM">0</b> moved after a check-in</div></div>
+      </div>
+      <div class="lanehead"><div></div><div>Fixed date</div><div class="r">Rhythm SIP</div></div>
+      <div class="mgrid rv" style="--i:4" id="mgrid"></div>
+      <div class="rp-key"><span><i class="k-dot" style="background:var(--d-green)"></i>money arrives</span><span><i class="k-take"></i>money is taken</span>
+        <span style="color:var(--d-green)" data-icon="check" data-size="14"></span><span style="margin-left:-12px">invested</span>
+        <span style="color:var(--d-verm)" data-icon="cross" data-size="14"></span><span style="margin-left:-12px">bounced</span>
+        <span style="color:var(--d-indigo)" data-icon="moved" data-size="14"></span><span style="margin-left:-12px">moved</span></div>
+      <p class="summary" id="rpSummary"></p>
+      <p class="fine" id="rpFine"></p>
+      <div class="row" style="margin-top:16px"><button class="pill sm" id="replayAgain" type="button">Replay</button></div>
+    </div></div>
+  </section>
+
+  <!-- 5 · check-in -->
+  <section class="slide" id="s-checkin" aria-label="Check-in">
+    <div class="inner"><div class="wrap">
+      <div class="ci-grid">
+        <div class="phone rv" style="--i:1" aria-label="Phone notification">
+          <div class="screen">
+            <div class="notch"></div>
+            <div class="ls-time">9:00</div>
+            <div class="ls-date" id="lsDate"></div>
+            <div class="phone-body" id="phoneBody">
+              <div class="notif" id="notif">
+                <div class="n-app"><span class="ico" data-icon="pulse" data-size="13"></span>Rhythm SIP<span class="now">now</span></div>
+                <div class="n-t" id="nTitle"></div>
+                <div class="n-b" id="nBody"></div>
+                <div class="n-actions" id="nActions"></div>
+              </div>
+              <div class="thread" id="thread"></div>
+            </div>
+          </div>
+        </div>
+        <div class="ci-side">
+          <div class="eyebrow rv" style="--i:0">Step 4 · Every month</div>
+          <h2 class="title mid rv" style="--i:1" id="ciTitle"></h2>
+          <p class="lead rv" style="--i:2" id="ciSub"></p>
+          <div class="lifechip rv" style="--i:3" id="lifeChip"></div>
+          <div class="ci-label">Or reply in your own words</div>
+          <form class="ask sm" id="replyForm" autocomplete="off">
+            <label class="sr" for="replyInput">Reply in your own words</label>
+            <input id="replyInput" maxlength="300" placeholder="e.g. salary late, comes on the 8th">
+            <button class="go" type="submit" aria-label="Send reply"><span data-icon="arrow" data-size="18"></span></button>
+          </form>
+          <div class="chips" id="replyChips"></div>
+          <div class="rc" id="readCard" hidden></div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- 6 · Lifelines -->
+  <section class="slide" id="s-lifeline" aria-label="Lifelines">
+    <div class="inner"><div class="wrap narrow">
+      <div class="eyebrow rv" style="--i:0">Step 5 · A tough month</div>
+      <h2 class="title rv" style="--i:1">A tough month doesn't end your SIP</h2>
+      <p class="lead rv" style="--i:2">Two Lifelines a year: skip or shift one month and the SIP stays active. Today a skipped month counts as a failed payment, and 3 in a row cancel the SIP.</p>
+      <div class="ll-card rv" style="--i:3">
+        <div class="ll-top"><b>Your SIP year</b><div class="tokens" id="tokens"></div></div>
+        <div class="year" id="year"></div>
+        <div class="row" style="margin-top:20px"><button class="pill primary" id="llBtn" type="button"></button></div>
+        <div id="llOut"></div>
+      </div>
+      <details class="fail rv" style="--i:4" id="failBox">
+        <summary>And if a payment fails anyway?</summary>
+        <div class="fail-body" id="failBody"></div>
+      </details>
+    </div></div>
+  </section>
+
+  <!-- 7 · learning -->
+  <section class="slide" id="s-learn" aria-label="Learning">
+    <div class="inner"><div class="wrap narrow">
+      <div class="eyebrow rv" style="--i:0">Step 6 · Over time</div>
+      <h2 class="title rv" style="--i:1">It learns your payday from your taps, not your bank</h2>
+      <p class="lead rv" style="--i:2">Every "money's in" or "yes" is one data point. When three months line up, Rhythm offers to lock the date and stop asking. No bank data needed.</p>
+      <div class="taps rv" style="--i:3" id="taps"></div>
+      <p class="hint rv" style="--i:4">Tap or drag on a month to move its payday, and watch the rules respond.</p>
+      <div id="verdictBox"></div>
+    </div></div>
+  </section>
+
+  <!-- 8 · how it's checked (dark) -->
+  <section class="slide" id="s-trust" aria-label="How it's checked">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="inner"><div class="wrap center">
+      <div class="orb rv" style="--i:0" data-icon="pulse" data-size="46"></div>
+      <div class="eyebrow rv" style="--i:1">How it's checked</div>
+      <h2 class="title rv" style="--i:2">The AI only reads. Rules decide. You confirm.</h2>
+      <div class="pipe rv" style="--i:3" id="pipe">
+        <div class="wire"><i></i></div>
+        <div class="pn"><div class="c" data-icon="chat" data-size="22"></div><div class="t">Your words</div><div class="d">"stipend late, comes on the 8th"</div></div>
+        <div class="pn"><div class="c" data-icon="eye" data-size="22"></div><div class="t">AI reads facts</div><div class="d">pattern, days, intent. Nothing else. Gemini, with Groq as backup</div></div>
+        <div class="pn"><div class="c" data-icon="rules" data-size="22"></div><div class="t">Rules check</div><div class="d">dates on real calendars, Groww's debit timing and cut-offs</div></div>
+        <div class="pn"><div class="c" data-icon="hand" data-size="22"></div><div class="t">You confirm</div><div class="d">nothing changes without your tap. Stopping is always one tap</div></div>
+      </div>
+      <div class="stats" id="stats"></div>
+      <p class="fine" style="margin:14px auto 0">Labels were drafted by an AI assistant before each run. Later versions were tuned after earlier misses on the same sets, so treat these as optimistic; the user tests are the unseen test.</p>
+      <div class="trust-ask">
+        <div class="ci-label" style="color:var(--dark-muted)">Ask anything about SIP payments</div>
+        <form class="ask sm" id="askForm" autocomplete="off">
+          <label class="sr" for="askInput">Ask anything about SIP payments</label>
+          <input id="askInput" maxlength="300" placeholder="e.g. will the bank charge me if it bounces?">
+          <button class="go" type="submit" aria-label="Ask"><span data-icon="arrow" data-size="18"></span></button>
+        </form>
+        <div class="chips" id="askChips"></div>
+        <div id="askOut"></div>
+      </div>
+      <ul class="limits">
+        <li>All money is simulated. No bank data is read and nothing is stored.</li>
+        <li>Calendar maths counts weekends but ignores bank holidays.</li>
+        <li>Phase 1 (check-in, moving a month, Lifelines) runs on Groww's existing date-change and skip features. The "invest the day after you tap" mode needs Phase 2 rails (on-demand UPI AutoPay), still to be validated.</li>
+        <li>Bank charges are illustrative: ₹500 + 18% GST per failed auto-debit; banks charge ₹250–750. Groww itself charges nothing.</li>
+      </ul>
+      <div class="row" style="margin-top:26px"><button class="pill primary lg" id="restart" type="button">Start over</button></div>
+      <p class="foot">Student prototype for an independent case study · <b>not affiliated with or endorsed by Groww</b> · simulated money · <b>not investment advice</b></p>
+    </div></div>
+  </section>
+</main>
+
+<footer class="bar">
+  <button class="pill ghost" id="back" type="button"><span data-icon="back"></span>Back</button>
+  <div class="where" id="where"></div>
+  <div class="nextwrap">
+    <button class="pill ghost" id="stay" type="button" hidden aria-label="Stay on this step" title="Stay on this step"><span data-icon="pause" data-size="14"></span></button>
+    <button class="pill primary" id="next" type="button"><span class="fill"></span><span id="nextLbl">Start</span><span data-icon="arrow"></span></button>
+  </div>
+</footer>
+<div class="sr" aria-live="polite" id="live"></div>
+<script src="/static/app.js?v=1"></script>
+</body>
+</html>

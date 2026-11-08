@@ -9,17 +9,17 @@ Legend: `[x]` done and checked · `[ ]` not done · **👤 You** = only you can 
 
 | Step | What | Plan time | Done |
 |---|---|---|---|
-| 1 | Setup + recruitment | Fri night | 8 / 11 |
+| 1 | Setup + recruitment | Fri night | 10 / 11 |
 | 2 | Metric decomposition + taxonomy | Fri night | **3 / 3 ✅** |
 | 3 | Collect + clean data | Sat 8–11 AM | 7 / 8 |
 | 4 | Hand-label golden set | Sat 11 AM–12 PM | **4 / 4 ✅** |
 | 5 | AI analysis → ranked opportunities | Sat 12–6 PM | **10 / 10 ✅** |
-| 6 | Deploy Discovery Engine link | Sat 6–7 PM | 4 / 8 |
-| 7 | 5–6 interviews + synthesis | Sat 7 PM – Sun 1 PM | 2 / 6 |
-| 8 | Problem definition | Sun 1–2 PM | 0 / 3 |
-| 9 | MVP + eval + 3 user tests | Sun 2 PM – Mon 10 AM | 2 / 12 |
+| 6 | Deploy Discovery Engine link | Sat 6–7 PM | **8 / 8 ✅** |
+| 7 | 5–6 interviews + survey + synthesis | Sat 7 PM – Sun 1 PM | **8 / 8 ✅** |
+| 8 | Problem definition | Sun 1–2 PM | **3 / 3 ✅** |
+| 9 | MVP + eval + 3 user tests | Sun 2 PM – Mon 10 AM | 10 / 13 |
 | 10 | Metrics, risks, deck → submit | Mon 9 AM–1 PM | 0 / 7 |
-| | **Total** | | **40 / 72** |
+| | **Total** | | **63 / 75** |
 
 **⏰ Reminder (you asked):** review the golden-set labels in `data/golden_set.xlsx` and change any you disagree with. Do it before the Step 9 MVP eval, which reuses them. Then I'll re-run `python step5_validate.py`.
 
@@ -29,8 +29,8 @@ Legend: `[x]` done and checked · `[ ]` not done · **👤 You** = only you can 
 
 ## Step 1: Setup + recruitment
 - [x] Recruitment done: participants are ready for interviews and forms (confirmed by you, 7 Nov)
-- [ ] 👤 Create the GitHub repo. *A local git repo exists, but with 0 commits and no remote. `gh` isn't installed, so create it on github.com.*
-- [ ] 👤 ❓ Create a Streamlit Community Cloud account
+- [x] GitHub repo created and pushed: `wagharwadi/sip-discovery-engine`
+- [x] Hosting account: not needed for Streamlit (its sign-in was blocked); Render account created and used instead
 - [x] Gemini key works: bulk `gemini-3.5-flash-lite` + quality `gemini-3.5-flash`. *3.7/3.8 Flash kept returning 503 "overloaded", so I switched.*
 - [x] Groq backup key works: `openai/gpt-oss-120b`. *The old llama model was retired.*
 - [x] YouTube Data API key works
@@ -77,35 +77,38 @@ Legend: `[x]` done and checked · `[ ]` not done · **👤 You** = only you can 
 - [x] Tab 1 Findings: ranked opportunities, stop-triggers, lifecycle chart, payment-failure deep dive, theme explorer with verified quotes → [streamlit_app.py](streamlit_app.py)
 - [x] Tab 2 Ask the data: tag-based retrieval + dataset-wide counts, cited answers, citation + quote checks, the brief's 9 questions preloaded
 - [x] Tab 3 Analyse new text: live tagging with the same prompt/taxonomy/validation (Hinglish tested)
-- [ ] Push code to GitHub (first commit; `.env` stays out)
+- [x] Pushed to GitHub: public repo `wagharwadi/sip-discovery-engine`, commit `6ad03c8`, 50 files, no secrets (verified)
 - [x] Tab 4 How it works & validation: pipeline diagram, sources, golden-set agreement, failure patterns, AI corrections, limitations
-- [ ] Deploy on Streamlit Cloud with API keys in **Secrets**, not in code
+- [x] Deployed on **Render** (free; Streamlit Cloud sign-in blocked, Hugging Face now paid) → https://sip-discovery-engine.onrender.com. Keys in Render environment variables, not in code.
 - [x] Usage cap: 12 AI calls per session, 250 per day, answers cached
-- [ ] Open the link in incognito and on your phone: it must work without logging in. *(Tested locally on desktop + phone size ✅; re-check after deploy.)*
+- [x] Live link tested without login, on desktop and phone size: all 4 tabs, live AI answer (checks passed) and live tagging work
 
 ## Step 7: User interviews (5–6) + synthesis
 - [x] 👤 Recruited (confirmed by you). *Check that each one fits: first Groww SIP 3–15 months ago, early-career/stipend.*
-- [ ] 👤 Mix: ~3 who paused, stopped or considered it + ~2–3 who continued
-- [x] Interview guide focused on payment failures: 5 hypotheses, ~35-min script, notes + synthesis templates → [step7_interview_kit.md](step7_interview_kit.md). Screener Q10b added to `recruitment_kit.md`.
-- [ ] 👤 Run the interviews (30–40 min each)
-- [ ] 👤 Anonymised notes
-- [ ] Synthesis: each AI theme marked Confirmed / Nuanced / Contradicted / New → Evidence Log §7
+- [x] Mix achieved: 4 with a failed payment (2 also paused), 1 considering stopping, 1 smooth
+- [x] Interview script (simple, ~15 min): 7 questions + show the 3 ideas, notes table → [step7_interview_kit.md](step7_interview_kit.md); analysis tables → [step7_synthesis_template.md](step7_synthesis_template.md) → [step7_interview_kit.md](step7_interview_kit.md). Screener Q10b added to `recruitment_kit.md`.
+- [x] Concept test added to the guide: 3 concept cards (payday SIP · failure rescue · skip-not-stop), rotated order, asks for their own idea first → [step7_concept_cards.md](step7_concept_cards.md)
+- [x] Survey run: **10 responses** (7 Groww), below the 25 target, reported as a small sample
+- [x] 6 interviews done (P1–P6), run by a research assistant with the script
+- [x] Anonymised notes (P-codes) → `interview_answers/` · ❗ check quotes against raw notes before the deck
+- [x] Synthesis → [step7_synthesis.md](step7_synthesis.md) + Evidence Log §7: H2 timing failures confirmed (4/4), AI's "system-side" finding **contradicted**, ideas B 7 · A 4 · C 4
 
 ## Step 8: Define the problem
-- [ ] One-paragraph problem statement: segment · moment in the first 12 months · product outcome · **root cause** · current workarounds · user value · business value
-- [ ] Evolution story: Metric → Outcomes → AI findings → Interviews → Problem (including what the interviews **changed**)
-- [ ] Check it avoids the "people stop when markets fall" framing *(our data already supports this: market fall is only 7% of mentions)*
+- [x] Problem statement (segment · moment · outcome · root cause · workarounds · user + business value) → [FINAL_SOLUTION.md](FINAL_SOLUTION.md) §1
+- [x] Evolution story incl. what the interviews changed (AI said system faults → research showed cash-flow timing) → FINAL_SOLUTION.md §2
+- [x] Avoids the "markets fell" framing: markets ~7% of complaints, 0 stops caused by markets in interviews
 
 ## Step 9: MVP + eval + user tests
 - [x] Gemini → Groq automatic backup, ready to reuse → [llm.py](llm.py)
 - [x] Same taxonomy available for the concern classifier → [taxonomy.py](taxonomy.py)
-- [ ] Guard 1: advice detector ("Which fund?", "Should I stop?") → polite decline + AMFI / SEBI-registered-advisor pointer
-- [ ] Concern classifier (uses the taxonomy)
-- [ ] Small knowledge base from AMFI, SEBI and Groww help pages
-- [ ] Grounded answers from that knowledge base
-- [ ] Guard 2: output check (no fund names, no return promises, no fear/urgency words). If it fails or confidence is low → "Not sure" + official link.
-- [ ] Always visible: "Educational only. Not investment advice." + "✓ Safety check passed" badge
-- [ ] Eval on the golden set: classification accuracy · refusal precision/recall · violation rate → Evidence Log §8
+- [x] Guard 1: advice rules (English + Hinglish, prompt-injection) + router → polite decline + SEBI-registered-adviser link → [mvp_core.py](mvp_core.py)
+- [x] Concern classifier (router, same taxonomy): payment failures 5/5, overall 50% vs golden labels
+- [x] Knowledge base: 17 entries from Groww Help, Kotak MF, AMFI, SEBI, each with source link → [kb/sip_payments.json](kb/sip_payments.json)
+- [x] Grounded answers: may use only the selected official entries, must cite them
+- [x] Guard 2: no fund names / return figures / promises / fear words / advice phrasing, must cite a source; failure or low confidence → "Not sure" + official link
+- [x] MVP app built → [rhythm_app.py](rhythm_app.py): setup in your own words · 6-month replay · monthly check-in · Lifelines · failure help · "How it's checked"; "not investment advice" always visible + "Safety check passed" badges
+- [x] Eval on golden set + red-team (43 msgs, 3 iterations): **95% behaviour accuracy · refusal 100%/100% · 0 unsafe answers shown** → [mvp_eval.md](mvp_eval.md), Evidence Log §8
+- [x] Rhythm SIP eval (46 labelled pay descriptions + replies, 2 iterations): v2 100% pattern / 100% reply intent / 100% date checks / 100% advice refusal → [rhythm_eval.md](rhythm_eval.md), Evidence Log §8b
 - [ ] Deploy: public, no login, 3 example prompts on screen
 - [ ] 👤 3 user tests: a real task + think-aloud
 - [ ] Test notes: what worked, what confused them, what to change in v2
@@ -126,9 +129,9 @@ Legend: `[x]` done and checked · `[ ]` not done · **👤 You** = only you can 
 |---|---|
 | Golden set + agreement % | ✅ done (AI-drafted labels, disclosed) |
 | AI corrections log | ✅ 5 logged |
-| Eval-gated MVP with visible fallback | ❌ Step 9 |
-| Public working links (engine + MVP) | ❌ Steps 6 and 9 |
-| AI-vs-interview comparison | ❌ Step 7 |
+| Eval-gated MVP with visible fallback | 🔶 core built + evaluated; user-facing feature after interviews |
+| Public working links (engine + MVP) | ✅ engine live · ❌ MVP (Step 9) |
+| AI-vs-interview comparison | ✅ Evidence Log §7 |
 
 ## Checks already run
 - `python test_keys.py`: all 5 required checks pass

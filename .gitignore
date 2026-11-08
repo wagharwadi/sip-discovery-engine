@@ -15,3 +15,10 @@ data/logs/
 
 # local tool config
 .claude/
+
+# generated deploy folder
+build/
+
+# primary research: personal stories, keep out of the public repo
+interview_answers/
+survey_answers/
