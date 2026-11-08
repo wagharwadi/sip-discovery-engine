@@ -444,13 +444,13 @@ function enterRhythm(run) {
   $('#rhTitle').textContent = p.rhythm.title;
   $('#rhSub').textContent = p.rhythm.sub;
   buildCalendar(p);
-  $('#legend').replaceChildren(...p.rhythm.legend.map(it => h('li', { class: 'lg' }, h('span', { class: 'sw hl-' + it.kind }),
+  $('#legend').replaceChildren(...p.rhythm.legend.map(it => h('li', { class: 'lgd' }, h('span', { class: 'sw hl-' + it.kind }),
     h('div', null, h('div', { class: 'w' }, it.when), h('div', { class: 't' }, it.what)))));
   (async () => {
     if (!(await wait(520, run))) return;
     $('#cal').classList.add('in');
     if (!(await wait(800, run))) return;
-    const items = $$('#legend .lg');
+    const items = $$('#legend .lgd');
     for (let k = 0; k < items.length; k++) {
       items.forEach(x => x.classList.remove('now'));
       items[k].classList.add('on', 'now');

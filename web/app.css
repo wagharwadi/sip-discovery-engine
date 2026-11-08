@@ -91,7 +91,7 @@ body.is-dark .fine { color: var(--dark-muted); }
 
 /* ---------------------------------------------------------------- buttons */
 .pill {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; padding: 11px 22px;
+  flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; padding: 11px 22px;
   font-size: 15.5px; font-weight: 550; border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer;
   position: relative; overflow: hidden; white-space: nowrap; transition: transform .25s var(--ease), background .25s, border-color .25s, color .25s, box-shadow .25s, opacity .25s;
 }
@@ -264,12 +264,12 @@ body.is-dark .note.ok { background: rgba(61, 219, 176, .12); color: #C8F5E8; }
 .day.hl-money.out, .day.hl-window.out { color: #00604A !important; }
 .day[class*="hl-"] .om { color: inherit; }
 .legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-.lg { display: grid; grid-template-columns: 42px 1fr; gap: 15px; align-items: center; padding: 9px 14px; border-radius: 16px; opacity: .3; transform: translateX(10px); transition: opacity .6s ease, transform .7s var(--ease), background .6s; }
-.lg.on { opacity: 1; transform: none; }
-.lg.now { background: var(--soft); }
-.lg .sw { width: 42px; height: 36px; border-radius: 11px; background: var(--line-2); transform: none !important; }
-.lg .w { font-size: 12.5px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
-.lg .t { font-size: 16px; color: var(--ink); margin-top: 2px; line-height: 1.4; }
+.lgd { display: grid; grid-template-columns: 42px 1fr; gap: 15px; align-items: center; padding: 9px 14px; border-radius: 16px; opacity: .3; transform: translateX(10px); transition: opacity .6s ease, transform .7s var(--ease), background .6s; }
+.lgd.on { opacity: 1; transform: none; }
+.lgd.now { background: var(--soft); }
+.lgd .sw { width: 42px; height: 36px; border-radius: 11px; background: var(--line-2); transform: none !important; }
+.lgd .w { font-size: 12.5px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.lgd .t { font-size: 16px; color: var(--ink); margin-top: 2px; line-height: 1.4; }
 
 /* ---------------------------------------------------------------- 4. replay (dark) */
 .tally { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 0 0 16px; }
