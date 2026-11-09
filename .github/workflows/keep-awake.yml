@@ -1,5 +1,6 @@
-# Keeps the live demo awake for evaluators. Render's free server sleeps after 15 minutes without visitors and then
-# takes about a minute to wake, so this visits both links every 5 minutes (GitHub may delay scheduled runs a little).
+# Backup wake-up for the live demo. The app keeps itself awake (keep_awake in rhythm_app.py visits its own public
+# address every 4 minutes). GitHub runs scheduled jobs late or skips them (2 runs in the first 12 hours here), so this
+# only matters if the server is ever asleep: it visits both links and waits for them to come up.
 name: Keep the live demo awake
 
 on:

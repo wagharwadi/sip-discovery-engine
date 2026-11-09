@@ -7,6 +7,7 @@ Front end:    web/  (one guided flow: each step moves on by itself once its chec
 Design rule:  the AI only reads (pay description, check-in replies); rules decide and verify; the user confirms.
 Free-text questions go through the tested safety engine (mvp_core). All data is simulated: no real money, no bank data.
 """
+import asyncio
 import calendar
 import contextlib
 import datetime as dt
@@ -19,6 +20,7 @@ from pathlib import Path
 
 os.environ.setdefault("LLM_MIN_GAP", "2")
 
+import httpx  # noqa: E402
 import uvicorn  # noqa: E402
 from starlette.applications import Starlette  # noqa: E402
 from starlette.concurrency import run_in_threadpool  # noqa: E402
@@ -684,12 +686,38 @@ async def health(request):
 
 ENGINE_ON = os.environ.get("ENGINE", "1") != "0"
 
+# Render's free plan puts a service to sleep after 15 minutes without visitors, and the next visitor then waits about
+# a minute. Reviewers may open the links at any time over the next weeks, so the server visits its own public address
+# every 4 minutes. The request goes out and back in through Render's front door, so it counts as a visit.
+# One always-on free service needs ~720 of the 750 free hours a month. Render sets RENDER_EXTERNAL_URL; locally it's
+# unset, so nothing runs.
+SELF_URL = (os.environ.get("KEEP_AWAKE_URL") or os.environ.get("RENDER_EXTERNAL_URL") or "").rstrip("/")
+KEEP_AWAKE_EVERY = int(os.environ.get("KEEP_AWAKE_SECONDS", "240"))
+
+
+async def keep_awake():
+    urls = [SELF_URL + "/healthz"] + ([SELF_URL + "/engine/_stcore/health"] if ENGINE_ON else [])
+    print(f"keep-awake: visiting {SELF_URL} every {KEEP_AWAKE_EVERY}s", flush=True)
+    async with httpx.AsyncClient(timeout=60) as client:
+        while True:
+            await asyncio.sleep(KEEP_AWAKE_EVERY)
+            for url in urls:
+                try:
+                    r = await client.get(url)
+                    if r.status_code != 200:
+                        print(f"keep-awake: {url} answered {r.status_code}", flush=True)
+                except Exception as e:  # a missed visit is fine: the next one is 4 minutes later, well inside 15
+                    print(f"keep-awake: {url} failed: {type(e).__name__}", flush=True)
+
 
 @contextlib.asynccontextmanager
 async def lifespan(app):
     if ENGINE_ON:
         E.start(ROOT)                 # Discovery Engine (Streamlit) as a child process, served at /engine/
+    pinger = asyncio.create_task(keep_awake()) if SELF_URL else None
     yield
+    if pinger:
+        pinger.cancel()
     E.stop()
 
 
