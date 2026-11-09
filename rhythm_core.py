@@ -169,7 +169,13 @@ def recommend(rh: dict, current_day: int = None) -> Recommendation:
     why = ["Groww takes the money <b>one working day before</b> your SIP date."]
     # if the date they already have is safe, don't change it (Rhythm should change nothing for people without a problem)
     narrow = p == "fixed_date" or p == "last_working_day" or (p == "date_window" and lo and hi and hi - lo <= 4)
-    if current_day and hi and narrow and 1 <= current_day <= MAX_SIP_DAY and fixed_day_gap(rh, current_day) >= 1:
+    # v3 (after the walkthrough): a date just BEFORE payday was being kept because last month's money could cover it
+    # on paper (P6: salary on the 1st-2nd, SIP on the 1st). Research says those dates fail. So, unless pay lands at
+    # month end (which normally funds an early date next month), keep a date only if it is >= 3 days after payday.
+    month_end_pay = p == "last_working_day" or ((lo or hi or 0) >= 24)
+    after_payday = month_end_pay or (current_day or 0) >= (hi or 99) + BUFFER_DAYS
+    if (current_day and hi and narrow and after_payday and 1 <= current_day <= MAX_SIP_DAY
+            and fixed_day_gap(rh, current_day) >= 1):
         rec = Recommendation("fixed", current_day, (lo or hi, current_day), f"Keep your date: the {ordinal(current_day)}",
                              why + [f"Your current date already leaves a safe gap after your money arrives, so nothing needs to change."])
         rec.checks = date_checks(rh, rec)
